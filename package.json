@@ -7,8 +7,8 @@
     "dev": "npm run watch:kintone & npm run watch:vite",
     "init": "kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs",
     "develop": "npm run build:plugin -- --watch",
-    "build": "tsc && vite build --watch",
-    "postbuild": "kintone-plugin-packer --ppk dist/private.ppk --out dist/plugin.zip plugin --watch",
+    "vite": "tsc && vite build --watch",
+    "kintone": "kintone-plugin-packer --ppk dist/private.ppk --out dist/plugin.zip plugin --watch",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "upload": "node scripts/upload.mjs"
