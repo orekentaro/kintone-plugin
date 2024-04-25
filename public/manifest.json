@@ -1,0 +1,33 @@
+{
+  "manifest_version": 1,
+  "version": 1,
+  "type": "APP",
+  "desktop": {
+    "js": [
+      "https://unpkg.com/kintone-ui-component/umd/kuc.min.js",
+      "js/desktop.js"
+    ],
+    "css": ["css/51-modern-default.css", "css/desktop.css"]
+  },
+  "icon": "image/icon.png",
+  "config": {
+    "html": "html/config.html",
+    "js": [
+      "https://unpkg.com/kintone-ui-component/umd/kuc.min.js",
+      "js/config.js"
+    ],
+    "css": [
+      "css/51-modern-default.css",
+      "css/config.css",
+      "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    ],
+    "required_params": []
+  },
+  "name": {
+    "en": "Plugin sample",
+    "ja": "プラグインサンプル"
+  },
+  "description": {
+    "en": "Plugin sample"
+  }
+}

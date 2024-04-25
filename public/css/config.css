@@ -1,0 +1,24 @@
+.settings-heading {
+  padding: 1em 0;
+}
+
+.kintoneplugin-input-text {
+  width: 20em;
+}
+
+.bg-custom-gray {
+  background-color: #f7f9fa;
+}
+
+#drop-down {
+  span {
+    font-weight: bold;
+  }
+  button {
+    background-color: white;
+  }
+}
+
+#check-box span {
+  font-weight: bold;
+}

@@ -1,0 +1,41 @@
+{
+  "name": "kintone-plugin",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run watch:kintone & npm run watch:vite",
+    "init": "kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs",
+    "develop": "npm run build:plugin -- --watch",
+    "build": "tsc && vite build --watch",
+    "postbuild": "kintone-plugin-packer --ppk dist/private.ppk --out dist/plugin.zip plugin --watch",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "upload": "node scripts/upload.mjs"
+  },
+  "dependencies": {
+    "@kintone/plugin-uploader": "^9.0.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@cybozu/eslint-config": "^23.0.0",
+    "@kintone/dts-gen": "^8.0.10",
+    "@kintone/rest-api-client": "^5.5.1",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "kintone-ui-component": "^1.17.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.2.5",
+    "recoil": "^0.7.7",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  }
+}
