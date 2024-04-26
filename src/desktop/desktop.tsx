@@ -1,6 +1,5 @@
 ((PLUGIN_ID) => {
   kintone.events.on("app.record.index.show", (event) => {
-    console.log(event);
     console.log(PLUGIN_ID);
     return event;
   });
