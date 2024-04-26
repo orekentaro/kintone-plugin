@@ -4,14 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run watch:kintone & npm run watch:vite",
-    "init": "kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs",
-    "develop": "npm run build:plugin -- --watch",
-    "vite": "tsc && vite build --watch",
+    "dev": "npm-run-all --parallel watch:vite watch:kintone upload",
+    "watch:vite": "tsc && vite build --watch",
+    "watch:kintone": "chokidar './src' -c 'npm run kintone'",
+    "vite": "tsc && vite build",
     "kintone": "kintone-plugin-packer --ppk dist/private.ppk --out dist/plugin.zip plugin --watch",
+    "upload": "node scripts/upload.mjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "upload": "node scripts/upload.mjs"
+    "init": "kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs"
   },
   "dependencies": {
     "@kintone/plugin-uploader": "^9.0.7",

@@ -2,7 +2,7 @@ import { FC } from "react";
 const App: FC = () => {
   return (
     <>
-      <div>test test test</div>
+      <div>upload OK!!!</div>
     </>
   );
 };
