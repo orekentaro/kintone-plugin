@@ -1,9 +1,14 @@
 import { FC } from "react";
-console.log(kintone.$PLUGIN_ID);
-const App: FC = () => {
+import type { PluginId } from "../types/config";
+import Header from "../components/Header";
+import TextField from "../components/TextField";
+
+const App: FC<PluginId> = ({ PLUGIN_ID }) => {
+  console.log(PLUGIN_ID);
   return (
     <>
-      <div>upload OK!!</div>
+      <Header title={"Plugin Sample!!!"} subTitle={"Write plugin detail"} />
+      <TextField label="Text Field" onChange={(event) => console.log(event)} />
     </>
   );
 };

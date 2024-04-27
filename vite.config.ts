@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   build: {
+    chunkSizeWarningLimit: 1000,
     outDir: "plugin", // 出力ディレクトリを指定
     rollupOptions: {
       // エントリーポイントを設定
