@@ -9,7 +9,7 @@ npm run init
 
 ## .envファイルを作成
 
-- Change .env.example to your settings and rename it to .env
+- Change `.env.example` to your settings and rename it to `.env`
 
 ```
 KINTONE_BASE_URL=https://____your_subdomain____.cybozu.com/
