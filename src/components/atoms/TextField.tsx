@@ -1,17 +1,10 @@
-import { FC, useEffect } from "react";
-import { Text } from "kintone-ui-component";
+// docs
+// https://ui-component.kintone.dev/ja/docs/components/desktop/text
 
-type Props = {
-  className?: string;
-  error?: string;
-  label?: string;
-  placeholder?: string;
-  prefix?: string;
-  suffix?: string;
-  textAlign?: "left" | "right";
-  value?: string;
-  disabled?: boolean;
-  requiredIcon?: boolean;
+import { FC, useEffect } from "react";
+import { Text, TextProps } from "kintone-ui-component";
+
+type Props = TextProps & {
   onChange?: (event?: Event) => void | undefined;
   onFocus?: (event?: Event) => void | undefined;
   onInput?: (event?: Event) => void | undefined;
