@@ -38,7 +38,8 @@ const Button: FC<Props> = ({
   };
   useEffect(() => {
     createButton();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return <div id="button-form-component"></div>;
 };
 

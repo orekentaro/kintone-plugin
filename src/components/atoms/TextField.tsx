@@ -59,7 +59,8 @@ const TextField: FC<Props> = ({
   };
   useEffect(() => {
     createButton();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return <div id="input-form-component"></div>;
 };
 
