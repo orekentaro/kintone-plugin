@@ -3,6 +3,7 @@
 
 import { FC, useEffect } from "react";
 import { Button as KucButton, ButtonProps } from "kintone-ui-component";
+import { makeRandomString } from "../../utils/make";
 type Props = ButtonProps & {
   onClick?: (event?: Event) => void | undefined;
 };
@@ -17,6 +18,7 @@ const Button: FC<Props> = ({
   visible = true,
   onClick = undefined,
 }) => {
+  const domId = makeRandomString();
   const createButton = () => {
     const button = new KucButton({
       className: className,
@@ -33,14 +35,14 @@ const Button: FC<Props> = ({
       });
     }
 
-    const div = document.getElementById("button-form-component");
+    const div = document.getElementById(domId);
     div?.appendChild(button);
   };
   useEffect(() => {
     createButton();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return <div id="button-form-component"></div>;
+  return <div id={domId}></div>;
 };
 
 export default Button;

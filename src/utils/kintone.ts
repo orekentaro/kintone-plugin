@@ -10,7 +10,6 @@ export const getFormInfo = async (fields: fieldCodes[] = []) => {
     "GET",
     body
   );
-  console.log(form);
   return form.properties.filter((v: { type: fieldCodes }) =>
     fields.includes(v.type)
   ) as [];

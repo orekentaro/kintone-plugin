@@ -2,10 +2,9 @@
 // https://ui-component.kintone.dev/ja/docs/components/desktop/dropdown
 import { FC, useEffect } from "react";
 import { Dropdown as KucDropdown, DropdownProps } from "kintone-ui-component";
-import { fieldCodes } from "../../types/kintone";
+import { makeRandomString } from "../../utils/make";
 
 type Props = DropdownProps & {
-  fields?: fieldCodes[];
   onChange?: (event?: Event) => void | undefined;
 };
 
@@ -22,6 +21,7 @@ const Dropdown: FC<Props> = ({
   items = [],
   onChange = undefined,
 }) => {
+  const domId = makeRandomString();
   const createDropdown = () => {
     const dropdown = new KucDropdown({
       className: className,
@@ -40,14 +40,14 @@ const Dropdown: FC<Props> = ({
         onChange(event);
       });
     }
-    const div = document.getElementById("dropdown-form-component");
+    const div = document.getElementById(domId);
     div?.appendChild(dropdown);
   };
   useEffect(() => {
     createDropdown();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return <div id="dropdown-form-component"></div>;
+  return <div id={domId}></div>;
 };
 
 export default Dropdown;

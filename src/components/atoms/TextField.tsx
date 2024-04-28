@@ -3,6 +3,7 @@
 
 import { FC, useEffect } from "react";
 import { Text, TextProps } from "kintone-ui-component";
+import { makeRandomString } from "../../utils/make";
 
 type Props = TextProps & {
   onChange?: (event?: Event) => void | undefined;
@@ -24,6 +25,7 @@ const TextField: FC<Props> = ({
   onFocus = undefined,
   onInput = undefined,
 }) => {
+  const domId = makeRandomString();
   const createButton = () => {
     const text = new Text({
       className: className,
@@ -54,14 +56,14 @@ const TextField: FC<Props> = ({
       });
     }
 
-    const div = document.getElementById("input-form-component");
+    const div = document.getElementById(domId);
     div?.appendChild(text);
   };
   useEffect(() => {
     createButton();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return <div id="input-form-component"></div>;
+  return <div id={domId}></div>;
 };
 
 export default TextField;
