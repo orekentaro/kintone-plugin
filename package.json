@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm-run-all --parallel watch:vite watch:kintone upload",
-    "start": "npm run vite && npm run kintone && npm run upload",
+    "dev": "npm run push; npm-run-all --parallel watch:vite watch:kintone watch:upload",
+    "push": "npm run vite && npm run kintone && npm run upload",
     "watch:vite": "tsc && vite build --watch",
     "watch:kintone": "chokidar './src' -c 'npm run kintone --watch'",
+    "watch:upload": "npm run upload --watch --waiting-dialog-ms 3000",
     "vite": "tsc && vite build",
     "kintone": "kintone-plugin-packer --ppk dist/private.ppk --out dist/plugin.zip plugin",
     "upload": "node scripts/upload.mjs",

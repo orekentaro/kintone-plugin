@@ -28,9 +28,7 @@ npm run dev
 ## アップロード
 
 ```
-npm run vite
-npm run kintone
-npm run upload
+npm run push
 ```
 
 ## ファイル構成
