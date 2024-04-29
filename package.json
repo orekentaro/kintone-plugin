@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "npm-run-all --parallel watch:vite watch:kintone upload",
+    "start": "npm run vite && npm run kintone && npm run upload",
     "watch:vite": "tsc && vite build --watch",
-    "watch:kintone": "chokidar './src' -c 'npm run kintone'",
+    "watch:kintone": "chokidar './src' -c 'npm run kintone --watch'",
     "vite": "tsc && vite build",
-    "kintone": "kintone-plugin-packer --ppk dist/private.ppk --out dist/plugin.zip plugin --watch",
+    "kintone": "kintone-plugin-packer --ppk dist/private.ppk --out dist/plugin.zip plugin",
     "upload": "node scripts/upload.mjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "init": "kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs"

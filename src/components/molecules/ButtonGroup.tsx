@@ -1,10 +1,11 @@
 import { FC, useEffect } from "react";
 import { Button as KucButton } from "kintone-ui-component";
-import { makeRandomString } from "../../utils/make";
+import { makeMargeClassName, makeRandomString } from "../../utils/make";
 
 type Props = {
   confirmText: string;
   cancelText: string;
+  className?: string;
   onCancelClick?: (event?: Event) => void | undefined;
   onConfirmClick?: (event?: Event) => void | undefined;
 };
@@ -12,6 +13,7 @@ type Props = {
 const ButtonGroup: FC<Props> = ({
   confirmText,
   cancelText,
+  className,
   onConfirmClick = undefined,
   onCancelClick = undefined,
 }) => {
@@ -46,8 +48,10 @@ const ButtonGroup: FC<Props> = ({
     createButton();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const c = className || "";
+  const combinedClasses = makeMargeClassName("d-flex", c);
   return (
-    <div className="d-flex">
+    <div className={combinedClasses}>
       <div id={cancelDomId}></div>
       <div id={confirmDomId}></div>
     </div>

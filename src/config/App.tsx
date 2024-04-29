@@ -23,10 +23,11 @@ const App: FC<PluginId> = ({ PLUGIN_ID }) => {
         />
       </BackGroundColorSpace>
       <ButtonGroup
+        className="justify-content-between"
         cancelText="戻る"
         confirmText="登録"
-        onConfirmClick={() => console.log("confirm")}
-        onCancelClick={() => console.log("cancel")}
+        onConfirmClick={(event) => console.log(event)}
+        onCancelClick={(event) => console.log(event)}
       />
     </>
   );

@@ -1,5 +1,5 @@
-import classNames from "classnames";
 import { FC, ReactNode } from "react";
+import { makeMargeClassName } from "../../utils/make";
 type Props = {
   className?: string;
   ms?: 0 | 1 | 2 | 3 | 4 | 5;
@@ -11,12 +11,7 @@ const BackGroundColorSpace: FC<Props> = ({
   ms = 2,
   children,
 }) => {
-  // 固定のクラス
-  const fixedClasses = "mb-4";
-
-  // propsで渡されたクラス
-  const dynamicClasses = className;
-  const combinedClasses = classNames(fixedClasses, dynamicClasses);
+  const combinedClasses = makeMargeClassName("mb-4", className);
   return (
     <div className={combinedClasses}>
       <div className={`ms-${ms}`}>{children}</div>
