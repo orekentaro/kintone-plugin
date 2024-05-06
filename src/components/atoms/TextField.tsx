@@ -1,69 +1,49 @@
 // docs
 // https://ui-component.kintone.dev/ja/docs/components/desktop/text
 
-import { FC, useEffect } from "react";
-import { Text, TextProps } from "kintone-ui-component";
+import { ChangeEvent, FC } from "react";
 import { makeRandomString } from "../../utils/make";
 
-type Props = TextProps & {
-  onChange?: (event?: Event) => void | undefined;
-  onFocus?: (event?: Event) => void | undefined;
-  onInput?: (event?: Event) => void | undefined;
+type Props = {
+  id?: string;
+  required?: boolean;
+  disabled?: boolean;
+  className?: string;
+  error?: string;
+  label?: string;
+  value?: string;
+  onChange?: (event?: ChangeEvent<HTMLInputElement>) => void | undefined;
+  onFocus?: (event?: CustomEvent) => void | undefined;
+  onInput?: (event?: CustomEvent) => void | undefined;
 };
 const TextField: FC<Props> = ({
+  id,
   className = "",
   error = "",
   label = "",
-  placeholder = "",
-  prefix = "",
-  suffix = "",
-  textAlign = "left",
   value = "",
+  required = false,
   disabled = false,
-  requiredIcon = false,
   onChange = undefined,
-  onFocus = undefined,
-  onInput = undefined,
 }) => {
   const domId = makeRandomString();
-  const createButton = () => {
-    const text = new Text({
-      className: className,
-      error: error,
-      label: label,
-      placeholder: placeholder,
-      prefix: prefix,
-      suffix: suffix,
-      textAlign: textAlign,
-      value: value,
-      disabled: disabled,
-      requiredIcon: requiredIcon,
-    });
-    if (onChange) {
-      text.addEventListener("change", (event: Event) => {
-        onChange(event);
-      });
-    }
-
-    if (onFocus) {
-      text.addEventListener("focus", (event: Event) => {
-        onFocus(event);
-      });
-    }
-    if (onInput) {
-      text.addEventListener("input", (event: Event) => {
-        onInput(event);
-      });
-    }
-
-    const div = document.getElementById(domId);
-    div?.appendChild(text);
-  };
-  useEffect(() => {
-    createButton();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  return <div id={domId}></div>;
+  const inputId = id === "" ? makeRandomString() : id;
+  return (
+    <div id={domId} className={className}>
+      <label htmlFor={inputId} className="form-label">
+        {label}
+      </label>
+      <input
+        id={inputId}
+        className="form-control"
+        onChange={onChange}
+        value={value}
+        disabled={disabled}
+        required={required}
+      />
+      <div>{error}</div>
+    </div>
+  );
 };
 
 export default TextField;
