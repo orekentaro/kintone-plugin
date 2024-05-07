@@ -1,5 +1,3 @@
-// docs
-// https://ui-component.kintone.dev/ja/docs/components/desktop/dropdown
 import { ChangeEventHandler, FC } from "react";
 import { makeRandomString } from "../../utils/make";
 import Label from "../atoms/Label";
