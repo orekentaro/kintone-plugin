@@ -2,7 +2,9 @@
 // https://ui-component.kintone.dev/ja/docs/components/desktop/text
 
 import { ChangeEvent, FC } from "react";
-import { makeRandomString } from "../../utils/make";
+import { makeMargeClassName, makeRandomString } from "../../utils/make";
+import Label from "../atoms/Label";
+import ErrorLabel from "../atoms/Error";
 
 type Props = {
   id?: string;
@@ -12,9 +14,9 @@ type Props = {
   error?: string;
   label?: string;
   value?: string;
+  bold?: boolean;
   onChange?: (event?: ChangeEvent<HTMLInputElement>) => void | undefined;
-  onFocus?: (event?: CustomEvent) => void | undefined;
-  onInput?: (event?: CustomEvent) => void | undefined;
+  onFocus?: (event?: ChangeEvent<HTMLInputElement>) => void | undefined;
 };
 const TextField: FC<Props> = ({
   id,
@@ -22,26 +24,31 @@ const TextField: FC<Props> = ({
   error = "",
   label = "",
   value = "",
+  bold = false,
   required = false,
   disabled = false,
   onChange = undefined,
+  onFocus = undefined,
 }) => {
   const domId = makeRandomString();
   const inputId = id === "" ? makeRandomString() : id;
+  const combinedClasses = makeMargeClassName(
+    "kintoneplugin-input-outer",
+    className
+  );
   return (
-    <div id={domId} className={className}>
-      <label htmlFor={inputId} className="form-label">
-        {label}
-      </label>
+    <div id={domId} className={combinedClasses}>
+      <Label label={label} required={required} bold={bold} />
       <input
         id={inputId}
-        className="form-control"
+        className="kintoneplugin-input-text"
         onChange={onChange}
+        onFocus={onFocus}
         value={value}
         disabled={disabled}
         required={required}
       />
-      <div>{error}</div>
+      {error && <ErrorLabel error={error} />}
     </div>
   );
 };
