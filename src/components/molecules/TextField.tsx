@@ -1,7 +1,4 @@
-// docs
-// https://ui-component.kintone.dev/ja/docs/components/desktop/text
-
-import { ChangeEvent, FC } from "react";
+import { ChangeEventHandler, FC, FocusEventHandler } from "react";
 import { makeMargeClassName, makeRandomString } from "../../utils/make";
 import Label from "../atoms/Label";
 import ErrorLabel from "../atoms/Error";
@@ -15,8 +12,8 @@ type Props = {
   label?: string;
   value?: string;
   bold?: boolean;
-  onChange?: (event?: ChangeEvent<HTMLInputElement>) => void | undefined;
-  onFocus?: (event?: ChangeEvent<HTMLInputElement>) => void | undefined;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
 };
 const TextField: FC<Props> = ({
   id,
