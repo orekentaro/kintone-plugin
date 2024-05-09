@@ -44,6 +44,7 @@ const TextField: FC<Props> = ({
         value={value}
         disabled={disabled}
         required={required}
+        type="text"
       />
       {error && <ErrorLabel error={error} />}
     </div>

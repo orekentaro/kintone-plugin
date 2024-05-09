@@ -3,8 +3,9 @@ import { makeRandomString } from "../../utils/make";
 import Label from "../atoms/Label";
 import ErrorLabel from "../atoms/Error";
 
+export type DropDownValue = { key: string; value: string };
 type Props = {
-  items: string[];
+  items: DropDownValue[];
   value?: string;
   required?: boolean;
   disabled?: boolean;
@@ -27,9 +28,9 @@ const Dropdown: FC<Props> = ({
   onChange = undefined,
 }) => {
   const domId = makeRandomString();
-  const itemList = items.map((item, index) => (
-    <option key={index} value={item} selected={value === item}>
-      {item}
+  const itemList = items.map((v) => (
+    <option key={v.key} value={v.key} selected={value === v.key}>
+      {v.value}
     </option>
   ));
   return (
@@ -38,6 +39,7 @@ const Dropdown: FC<Props> = ({
       <div className="kintoneplugin-select-outer">
         <div className="kintoneplugin-select">
           <select onChange={onChange} disabled={disabled}>
+            <option hidden>選択してください</option>
             {itemList}
           </select>
         </div>

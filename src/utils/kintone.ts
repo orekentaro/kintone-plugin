@@ -12,5 +12,22 @@ export const getFormInfo = async (fields: fieldCodes[] = []) => {
   );
   return form.properties.filter((v: { type: fieldCodes }) =>
     fields.includes(v.type)
-  ) as [];
+  ) as {
+    code: string;
+    defaultValue: string;
+    expression: string;
+    hideExpression: boolean;
+    label: string;
+    maxLength: number;
+    minLength: number;
+    noLabel: boolean;
+    required: boolean;
+    type: fieldCodes;
+    unique: boolean;
+  }[];
+};
+
+export const backPage = () => {
+  // 設定画面からプラグイン一覧へ戻る
+  window.location.href = "../plugin/#/";
 };
