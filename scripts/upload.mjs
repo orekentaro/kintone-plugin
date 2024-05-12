@@ -31,4 +31,4 @@ exec(command, (error, stdout, stderr) => {
   console.log(`stdout: ${stdout}`);
   console.error(`stderr: ${stderr}`);
 });
-console.log("success upload");
+console.log("uploading...");
