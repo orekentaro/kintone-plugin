@@ -16,7 +16,7 @@
     "init": "kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs"
   },
   "dependencies": {
-    "@kintone/plugin-uploader": "^9.0.7",
+    "@kintone/plugin-uploader": "^9.1.0",
     "classnames": "^2.5.1",
     "dotenv": "^16.4.5",
     "react": "^18.2.0",
