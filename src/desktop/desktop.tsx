@@ -1,9 +1,21 @@
-import { makeRandomString } from "../utils/make";
+import { Root, createRoot } from "react-dom/client";
+import Button from "../components/atoms/Button";
+import { kintoneConfig } from "../utils/kintone";
 
-const PLUGIN_ID = kintone.$PLUGIN_ID;
+const onClick = () => {
+  alert(kintoneConfig.name);
+  console.log(kintoneConfig.field);
+};
+
 kintone.events.on("app.record.index.show", (event) => {
-  const kintoneConfig = kintone.plugin.app.getConfig(PLUGIN_ID);
-  console.log(makeRandomString());
-  console.log(kintoneConfig);
+  let root: Root | null = null;
+
+  const rootElement = kintone.app.getHeaderMenuSpaceElement();
+  if (rootElement) {
+    rootElement.id = "header-id";
+    root = createRoot(rootElement);
+  }
+  root?.render(<Button text="押してね!" type="ok" onClick={onClick} />);
+
   return event;
 });

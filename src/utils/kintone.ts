@@ -1,3 +1,4 @@
+import { ConfigState } from "../types/config";
 import { fieldCodes } from "../types/kintone";
 
 export const getFormInfo = async (fields: fieldCodes[] = []) => {
@@ -31,3 +32,8 @@ export const backPage = () => {
   // 設定画面からプラグイン一覧へ戻る
   window.location.href = "../plugin/#/";
 };
+
+export const PLUGIN_ID = kintone.$PLUGIN_ID;
+export const kintoneConfig = kintone.plugin.app.getConfig(
+  PLUGIN_ID
+) as ConfigState;
