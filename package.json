@@ -4,19 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run push; npm-run-all --parallel watch:vite watch:kintone watch:upload",
-    "push": "npm run vite && npm run kintone && npm run upload",
-    "watch:vite": "tsc && vite build --watch",
-    "watch:kintone": "chokidar './src' -c 'npm run kintone --watch'",
-    "watch:upload": "node scripts/upload.mjs --watch --waiting-dialog-ms 3000",
-    "vite": "tsc && vite build",
+    "dev": "npm run push; node scripts/watch.js",
+    "push": "npm run move:static && npm run webpack && npm run kintone && npm run upload",
+    "webpack": "webpack --mode production",
     "kintone": "kintone-plugin-packer --ppk dist/private.ppk --out dist/plugin.zip plugin",
     "upload": "node scripts/upload.mjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "init": "kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs"
+    "init": "kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs",
+    "move:static": " mkdir -p plugin/ && cp -r src/static/* plugin/"
   },
   "dependencies": {
     "@kintone/plugin-uploader": "^9.1.0",
+    "chokidar": "^3.6.0",
     "classnames": "^2.5.1",
     "dotenv": "^16.4.5",
     "react": "^18.2.0",
@@ -39,7 +38,10 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^3.2.5",
     "recoil": "^0.7.7",
+    "ts-loader": "^9.5.1",
     "typescript": "^5.2.2",
-    "vite": "^5.2.11"
+    "vite": "^5.2.11",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   }
 }
