@@ -45,7 +45,6 @@ npm run push
 │   ├── components
 │   ├── config ... 設定画面
 │   ├── desktop ... PC用の設定
-│   ├── mobile ... 携帯電話用の設定
 │   ├── static ... プラグインに使用する静的ファイルを配置
 │   │   ├── css
 │   │   ├── html

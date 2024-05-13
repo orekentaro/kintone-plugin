@@ -2,18 +2,15 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   build: {
-    chunkSizeWarningLimit: 1000,
-    outDir: "plugin", // 出力ディレクトリを指定
+    chunkSizeWarningLimit: 1024 * 1024 * 2,
+    outDir: "plugin",
     rollupOptions: {
-      // エントリーポイントを設定
       input: {
-        config: "./src/config/index.ts", // config/index.ts を dist/js/config.js に出力
-        desktop: "./src/desktop/index.ts", // desktop/index.ts を dist/js/desktop.js に出力
-        mobile: "./src/mobile/index.ts", // mobile/index.ts を dist/js/mobile.js に出力
+        config: "./src/config/index.ts",
+        desktop: "./src/desktop/index.ts",
       },
-      // 出力ファイル名の設定
       output: {
-        entryFileNames: "js/[name].js", // エントリーポイント名で出力
+        entryFileNames: "js/[name].js",
       },
     },
   },
