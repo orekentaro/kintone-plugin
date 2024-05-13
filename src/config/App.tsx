@@ -1,6 +1,5 @@
 import { ChangeEventHandler, FC, useEffect, useState } from "react";
 import type { ConfigState, PluginId } from "../types/config";
-import Header from "../components/Header";
 import BackGroundColorSpace from "../components/atoms/BackGroundColorSpace";
 import {
   RecoilState,
@@ -13,6 +12,7 @@ import TextField from "../components/molecules/TextField";
 import Dropdown, { DropDownValue } from "../components/molecules/Dropdown";
 import ButtonGroup from "../components/molecules/ButtonGroup";
 import { backPage, getFormInfo } from "../utils/kintone";
+import Header from "../components/Header";
 
 const App: FC<PluginId> = ({ PLUGIN_ID }) => {
   const [config, setConfig] = useRecoilState(configState);
