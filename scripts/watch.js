@@ -5,14 +5,14 @@ const directoryToWatch = "./src";
 const watcher = chokidar.watch(directoryToWatch);
 
 watcher.on("change", (path) => {
-  console.log(`change file: ${path}`);
-  console.log("start");
+  console.log(`\x1b[35mchange file: ${path}`);
+  console.log("\x1b[32mstart");
   exec("npm run move:static", () => {
     exec("npm run webpack", () => {
       exec("npm run kintone", () => {
-        console.log("uploading...");
+        console.log("\x1b[36muploading...");
         exec("npm run upload", () => {
-          console.log("done");
+          console.log("\x1b[32mdone");
         });
       });
     });
@@ -20,5 +20,5 @@ watcher.on("change", (path) => {
 });
 
 watcher.on("error", (error) => {
-  console.error(`Watcher error: ${error}`);
+  console.error(`\x1b[31mWatcher error: ${error}`);
 });

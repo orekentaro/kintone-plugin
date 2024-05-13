@@ -31,4 +31,4 @@ exec(command, (error, stdout, stderr) => {
   console.log(`stdout: ${stdout}`);
   console.error(`stderr: ${stderr}`);
 });
-console.log("uploading...");
+console.log("\x1b[36muploading...");
