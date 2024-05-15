@@ -8,6 +8,7 @@ export default {
   entry: {
     config: "./src/config/index.ts",
     desktop: "./src/desktop/index.ts",
+    mobile: "./src/mobile/index.ts",
   },
   output: {
     filename: "js/[name].js",
