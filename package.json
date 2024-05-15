@@ -10,7 +10,7 @@
     "kintone": "kintone-plugin-packer --ppk dist/private.ppk --out dist/plugin.zip plugin",
     "upload": "node scripts/upload.mjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "init": "kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs",
+    "init": "npm run move:static && npm run webpack && kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs",
     "move:static": " mkdir -p plugin/ && cp -r src/static/* plugin/"
   },
   "dependencies": {
