@@ -18,10 +18,25 @@ watcher.on("change", (path) => {
       exec("npm run move:static", () => {
         console.log("\x1b[32mStart");
       });
-      exec("npm run webpack", () => {
-        exec("npm run kintone", () => {
+      exec("npm run webpack", (error, stdout) => {
+        if (error) {
+          console.error(`\x1b[31mWatcher error: ${error}`);
+          console.log(`stdout: ${stdout}`);
+          return;
+        }
+        exec("npm run kintone", (error1, stdout1) => {
+          if (error) {
+            console.error(`\x1b[31mWatcher error: ${error1}`);
+            console.log(`stdout: ${stdout1}`);
+            return;
+          }
           console.log("\x1b[36mUploading...");
-          exec("npm run upload", () => {
+          exec("npm run upload", (error2, stdout2) => {
+            if (error2) {
+              console.error(`\x1b[31mWatcher error: ${error2}`);
+              console.log(`stdout: ${stdout2}`);
+              return;
+            }
             console.log("\x1b[32mDone");
             isScriptRunning = false;
           });
@@ -33,7 +48,7 @@ watcher.on("change", (path) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       isScriptRunning = false;
-    }, 5000);
+    }, 1000);
   }
 });
 
