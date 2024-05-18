@@ -24,6 +24,7 @@ export default {
     ],
   },
   resolve: {
+    modules: ["node_modules"],
     extensions: [".tsx", ".ts", ".js"],
   },
 };
