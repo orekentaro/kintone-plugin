@@ -51,7 +51,9 @@ const App: FC<PluginId> = ({ PLUGIN_ID }) => {
   };
 
   useEffect(() => {
-    const kintoneConfig = kintone.plugin.app.getConfig(PLUGIN_ID);
+    const kintoneConfig = kintone.plugin.app.getConfig(
+      PLUGIN_ID
+    ) as ConfigState;
     const getValues = async () => {
       const formInfo = await getFormInfo(["SINGLE_LINE_TEXT"]);
       const v = formInfo.map((i) => {
