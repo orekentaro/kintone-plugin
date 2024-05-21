@@ -11,7 +11,9 @@
     "upload": "node scripts/upload.mjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "init": "npm run move:static && npm run webpack && kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs",
-    "move:static": " mkdir -p plugin/ && cp -r src/static/* plugin/"
+    "move:static": " mkdir -p plugin/ && cp -r src/static/* plugin/",
+    "prod": " npm run move:static && npm run webpack && npm run kintone && npm run make:prod",
+    "make:prod": " mkdir -p prod/ && cp -r dist/plugin.zip prod/"
   },
   "dependencies": {
     "@kintone/plugin-uploader": "^9.1.0",
