@@ -78,6 +78,7 @@ const App: FC<PluginId> = ({ PLUGIN_ID }) => {
           label="Text Field"
           onChange={handleTextFieldChange}
           value={config.name}
+          size={50}
           error="error!!!"
         />
         <Dropdown

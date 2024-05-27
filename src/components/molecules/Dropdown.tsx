@@ -13,6 +13,7 @@ type Props = {
   error?: string;
   label?: string;
   bold?: boolean;
+  size?: number;
   onChange?: ChangeEventHandler<HTMLSelectElement>;
 };
 
@@ -25,6 +26,7 @@ const Dropdown: FC<Props> = ({
   bold = false,
   disabled = false,
   required = false,
+  size = 25,
   onChange = undefined,
 }) => {
   const domId = makeRandomString();
@@ -37,7 +39,7 @@ const Dropdown: FC<Props> = ({
     <div id={domId} className={className}>
       <Label label={label} bold={bold} required={required} />
       <div className="kintoneplugin-select-outer">
-        <div className="kintoneplugin-select">
+        <div className="kintoneplugin-select" style={{ width: `${size}rem` }}>
           <select onChange={onChange} disabled={disabled}>
             <option hidden>選択してください</option>
             {itemList}

@@ -12,6 +12,7 @@ type Props = {
   label?: string;
   value?: string;
   bold?: boolean;
+  size?: number;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onFocus?: FocusEventHandler<HTMLInputElement>;
 };
@@ -22,6 +23,7 @@ const TextField: FC<Props> = ({
   label = "",
   value = "",
   bold = false,
+  size = 100,
   required = false,
   disabled = false,
   onChange = undefined,
@@ -45,6 +47,7 @@ const TextField: FC<Props> = ({
         disabled={disabled}
         required={required}
         type="text"
+        size={size}
       />
       {error && <ErrorLabel error={error} />}
     </div>
