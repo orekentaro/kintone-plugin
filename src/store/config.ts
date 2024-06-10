@@ -3,5 +3,5 @@ import { ConfigState } from "../types/config";
 
 export const configState = atom<ConfigState>({
   key: "configState",
-  default: { name: "", field: "" },
+  default: { name: "", field: "", checked: "false", radio: "" },
 });

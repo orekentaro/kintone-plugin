@@ -1,4 +1,10 @@
-import { ChangeEventHandler, FC, useEffect, useState } from "react";
+import {
+  ChangeEventHandler,
+  FC,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import type { ConfigState, PluginId } from "../types/config";
 import BackGroundColorSpace from "../components/atoms/BackGroundColorSpace";
 import {
@@ -13,6 +19,8 @@ import Dropdown, { DropDownValue } from "../components/molecules/Dropdown";
 import ButtonGroup from "../components/molecules/ButtonGroup";
 import { backPage, getFormInfo } from "../utils/kintone";
 import Header from "../components/Header";
+import RadioButton from "../components/molecules/RadioButton";
+import Checkbox from "../components/molecules/Checkbox";
 
 const App: FC<PluginId> = ({ PLUGIN_ID }) => {
   const [config, setConfig] = useRecoilState(configState);
@@ -48,6 +56,20 @@ const App: FC<PluginId> = ({ PLUGIN_ID }) => {
   const setKintoneConfig = () => {
     const fixConfig = getConfig(configState);
     kintone.plugin.app.setConfig(fixConfig);
+  };
+  const onChecked: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const checked = String(event.target.checked) as "true" | "false";
+    setConfig((prevConfig) => ({
+      ...prevConfig,
+      checked: checked,
+    }));
+  };
+  const onClick: MouseEventHandler<HTMLInputElement> = (event) => {
+    const input = event.target as HTMLInputElement;
+    setConfig((prevConfig) => ({
+      ...prevConfig,
+      radio: input.value,
+    }));
   };
 
   useEffect(() => {
@@ -85,6 +107,25 @@ const App: FC<PluginId> = ({ PLUGIN_ID }) => {
           value={config.field}
           items={values}
           onChange={handleDropdownChange}
+          label="フィールド名"
+        />
+        <Checkbox
+          LabelName="スクロールした際にタブを画面上部に固定する"
+          name="scroll"
+          value="scroll"
+          className="pb-2 ms-2"
+          onInput={onChecked}
+          checked={config.checked === "true"}
+        />
+        <RadioButton
+          options={[
+            { label: "ラジオボタンA", value: "0" },
+            { label: "ラジオボタンB", value: "1" },
+            { label: "ラジオボタンC", value: "2" },
+          ]}
+          value={config.radio}
+          label="選択して下さい"
+          onClick={onClick}
         />
       </BackGroundColorSpace>
       <ButtonGroup

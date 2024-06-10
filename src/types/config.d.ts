@@ -5,4 +5,6 @@ export type PluginId = {
 export interface ConfigState {
   name: string;
   field: string;
+  checked: "true" | "false";
+  radio: string;
 }
