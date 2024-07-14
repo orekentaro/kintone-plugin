@@ -6,11 +6,14 @@
   "scripts": {
     "dev": "npm run push; npm-run-all --parallel watch:vite watch:kintone watch:upload",
     "push": "npm run vite && npm run kintone && npm run upload",
-    "watch:vite": "tsc && vite build --watch",
+    "watch:vite": "tsc && npm-run-all --parallel watch:vite:config watch:vite:desktop watch:vite:mobile",
     "watch:kintone": "chokidar './src' -c 'npm run kintone --watch'",
     "watch:upload": "node scripts/upload.mjs --watch --waiting-dialog-ms 3000",
-    "vite": "tsc && vite build",
+    "watch:vite:config": "vite build -c vite.config.config.ts",
+    "watch:vite:desktop": "vite build -c vite.desktop.config.ts --watch",
+    "watch:vite:mobile": "vite build -c vite.mobile.config.ts --watch",
     "kintone": "kintone-plugin-packer --ppk dist/private.ppk --out dist/plugin.zip plugin",
+    "vite": "vite build -c vite.config.config.ts && vite build -c vite.desktop.config.ts && vite build -c vite.mobile.config.ts",
     "upload": "node scripts/upload.mjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "init": "kintone-plugin-packer --out dist/plugin.zip plugin && node scripts/createPrivatePpk.mjs"
