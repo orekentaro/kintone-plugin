@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "npm run push; npm-run-all --parallel watch:vite:config watch:vite:mobile watch:vite:desktop watch:kintone watch:upload",
     "push": "npm run vite && npm run kintone && npm run upload",
-    "watch:kintone": "chokidar './src' -c 'npm run kintone --watch'",
+    "watch:kintone": "chokidar './src' -c 'npm run kintone --watch && npm run upload'",
     "watch:upload": "node scripts/upload.mjs --watch --waiting-dialog-ms 3000",
-    "watch:vite:config": "vite build -c vite.config.config.ts",
+    "watch:vite:config": "vite build -c vite.config.config.ts --watch",
     "watch:vite:desktop": "vite build -c vite.desktop.config.ts --watch",
     "watch:vite:mobile": "vite build -c vite.mobile.config.ts --watch",
     "kintone": "kintone-plugin-packer --ppk dist/private.ppk --out dist/plugin.zip plugin",
