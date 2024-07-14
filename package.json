@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run push; npm-run-all --parallel watch:vite watch:kintone watch:upload",
+    "dev": "npm run push; npm-run-all --parallel watch:vite:config watch:vite:mobile watch:vite:desktop watch:kintone watch:upload",
     "push": "npm run vite && npm run kintone && npm run upload",
-    "watch:vite": "tsc && npm-run-all --parallel watch:vite:config watch:vite:desktop watch:vite:mobile",
     "watch:kintone": "chokidar './src' -c 'npm run kintone --watch'",
     "watch:upload": "node scripts/upload.mjs --watch --waiting-dialog-ms 3000",
     "watch:vite:config": "vite build -c vite.config.config.ts",
