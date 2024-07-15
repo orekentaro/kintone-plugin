@@ -1,4 +1,4 @@
-# Kintone Plugin ✖️ React ✖️ Typescript ⚡️ Template
+# Kintone Plugin ✖️ React ✖️ Typescript ✖️ Vite ⚡️ Template
 
 ## 初期化
 
@@ -55,5 +55,7 @@ npm run push
 │   └── utils
 ├── tsconfig.json
 ├── tsconfig.node.json
-└── webpack.config.js
+├── vite.config.config.ts
+├── vite.desktop.config.ts
+└── vite.mobile.config.ts
 ```
