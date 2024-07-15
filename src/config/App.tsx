@@ -17,7 +17,7 @@ import { configState } from "../store/config";
 import TextField from "../components/molecules/TextField";
 import Dropdown, { DropDownValue } from "../components/molecules/Dropdown";
 import ButtonGroup from "../components/molecules/ButtonGroup";
-import { backPage, getFormInfo } from "../utils/kintone";
+import { backPage, getFormInfo, requiredParams } from "../utils/kintone";
 import Header from "../components/Header";
 import RadioButton from "../components/molecules/RadioButton";
 import Checkbox from "../components/molecules/Checkbox";
@@ -88,6 +88,9 @@ const App: FC<PluginId> = ({ PLUGIN_ID }) => {
     };
     getValues();
     setConfig(kintoneConfig);
+    requiredParams.forEach((key) => {
+      console.log(kintoneConfig[key]);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

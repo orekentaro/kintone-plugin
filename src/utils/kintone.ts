@@ -1,3 +1,4 @@
+import data from "../static/manifest.json";
 import { ConfigState } from "../types/config";
 import { fieldCodes } from "../types/kintone";
 
@@ -37,3 +38,6 @@ export const PLUGIN_ID = kintone.$PLUGIN_ID;
 export const kintoneConfig = kintone.plugin.app.getConfig(
   PLUGIN_ID
 ) as ConfigState;
+
+export const requiredParams = data.config
+  .required_params as (keyof ConfigState)[];
