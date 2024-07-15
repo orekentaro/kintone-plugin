@@ -93,7 +93,7 @@ const App: FC<PluginId> = ({ PLUGIN_ID }) => {
 
   return (
     <>
-      <Header title={"Plugin Sample!!!"} subTitle={"Write plugin detail"} />
+      <Header title={"Plugin Sample!!!"} subTitle={"Write plugin detail!"} />
       <BackGroundColorSpace ms={3}>
         <TextField
           className="pb-2"

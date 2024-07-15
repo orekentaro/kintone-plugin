@@ -9,5 +9,9 @@
     "strict": true
   },
   "files": ["./node_modules/@kintone/dts-gen/kintone.d.ts"],
-  "include": ["./src"]
+  "include": [
+    "vite.config.config.ts",
+    "vite.mobile.config.ts",
+    "vite.desktop.config.ts"
+  ]
 }
