@@ -6,11 +6,15 @@ import {
   useEffect,
 } from "react";
 import { makeMargeClassName, makeRandomString } from "../../utils/make";
+import { ConfigState } from "../../types/config";
+import { SetterOrUpdater } from "recoil";
 type Props = {
+  configKey: keyof ConfigState;
   name: string;
   value: string;
   LabelName: string;
-  checked?: boolean;
+  config: ConfigState;
+  setConfig: SetterOrUpdater<ConfigState>;
   className?: string;
   disabled?: boolean;
   visible?: boolean;
@@ -21,9 +25,11 @@ const Checkbox: FC<Props> = ({
   LabelName,
   name,
   value,
+  configKey,
+  config,
+  setConfig,
   className = "",
   disabled = false,
-  checked = false,
   onInput = undefined,
 }) => {
   const domId = makeRandomString();
@@ -32,6 +38,8 @@ const Checkbox: FC<Props> = ({
     "kintoneplugin-input-checkbox",
     className
   );
+
+  const checked = config[configKey] === "true";
   const [isChecked, setIsChecked] = useState(checked);
 
   const handleCheckboxChange: MouseEventHandler<HTMLInputElement> = () => {
@@ -44,9 +52,22 @@ const Checkbox: FC<Props> = ({
         break;
     }
   };
+
+  const onChecked: ChangeEventHandler<HTMLInputElement> = (event) => {
+    if (setConfig) {
+      const c = String(event.target.checked) as "true" | "false";
+      setConfig((prevConfig) => ({
+        ...prevConfig,
+        [configKey]: c,
+      }));
+    }
+    if (onInput) {
+      onInput(event);
+    }
+  };
   useEffect(() => {
-    setIsChecked(checked);
-  }, [checked]);
+    setIsChecked(config[configKey] === "true");
+  }, [checked, config, configKey]);
   return (
     <div id={domId} className={margeClassName}>
       <span className="kintoneplugin-input-checkbox-item">
@@ -56,7 +77,7 @@ const Checkbox: FC<Props> = ({
           value={value}
           id={checkboxId}
           disabled={disabled}
-          onInput={onInput}
+          onInput={onChecked}
           checked={isChecked}
           onClick={handleCheckboxChange}
         />

@@ -1,10 +1,4 @@
-import {
-  ChangeEventHandler,
-  FC,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import { FC, useEffect, useState } from "react";
 import type { ConfigState, PluginId } from "../types/config";
 import BackGroundColorSpace from "../components/atoms/BackGroundColorSpace";
 import {
@@ -34,42 +28,10 @@ const App: FC<PluginId> = ({ PLUGIN_ID }) => {
       },
     []
   );
-  const handleTextFieldChange: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    const newName = event.target.value;
-    setConfig((prevConfig) => ({
-      ...prevConfig,
-      name: newName !== undefined ? newName : prevConfig.name,
-    }));
-  };
 
-  const handleDropdownChange: ChangeEventHandler<HTMLSelectElement> = (
-    event
-  ) => {
-    const newField = event.target.value;
-    setConfig((prevConfig) => ({
-      ...prevConfig,
-      field: newField !== undefined ? newField : prevConfig.field,
-    }));
-  };
   const setKintoneConfig = () => {
     const fixConfig = getConfig(configState);
     kintone.plugin.app.setConfig(fixConfig);
-  };
-  const onChecked: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const checked = String(event.target.checked) as "true" | "false";
-    setConfig((prevConfig) => ({
-      ...prevConfig,
-      checked: checked,
-    }));
-  };
-  const onClick: MouseEventHandler<HTMLInputElement> = (event) => {
-    const input = event.target as HTMLInputElement;
-    setConfig((prevConfig) => ({
-      ...prevConfig,
-      radio: input.value,
-    }));
   };
 
   useEffect(() => {
@@ -100,16 +62,24 @@ const App: FC<PluginId> = ({ PLUGIN_ID }) => {
       <BackGroundColorSpace ms={3}>
         <TextField
           className="pb-2"
+          configKey="name"
           label="Text Field"
-          onChange={handleTextFieldChange}
-          value={config.name}
           size={50}
-          error="error!!!"
+          config={config}
+          setConfig={setConfig}
+          onChange={(event) => {
+            console.log(event);
+          }}
         />
         <Dropdown
           value={config.field}
           items={values}
-          onChange={handleDropdownChange}
+          onChange={(event) => {
+            console.log(event);
+          }}
+          configKey="field"
+          config={config}
+          setConfig={setConfig}
           label="フィールド名"
         />
         <Checkbox
@@ -117,8 +87,12 @@ const App: FC<PluginId> = ({ PLUGIN_ID }) => {
           name="scroll"
           value="scroll"
           className="pb-2 ms-2"
-          onInput={onChecked}
-          checked={config.checked === "true"}
+          configKey="checked"
+          config={config}
+          setConfig={setConfig}
+          onInput={(event) => {
+            console.log(event);
+          }}
         />
         <RadioButton
           options={[
@@ -128,7 +102,12 @@ const App: FC<PluginId> = ({ PLUGIN_ID }) => {
           ]}
           value={config.radio}
           label="選択して下さい"
-          onClick={onClick}
+          configKey="radio"
+          config={config}
+          setConfig={setConfig}
+          onClick={(event) => {
+            console.log(event);
+          }}
         />
       </BackGroundColorSpace>
       <ButtonGroup

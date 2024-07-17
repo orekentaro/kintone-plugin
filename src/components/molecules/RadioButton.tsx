@@ -2,10 +2,15 @@ import { ChangeEventHandler, FC, MouseEventHandler } from "react";
 import Label from "../atoms/Label";
 import ErrorLabel from "../atoms/Error";
 import { makeRandomString } from "../../utils/make";
+import { ConfigState } from "../../types/config";
+import { SetterOrUpdater } from "recoil";
 
 export type RadioButtonValue = { label: string; value: string };
 type Props = {
+  configKey: keyof ConfigState;
   options: RadioButtonValue[];
+  config: ConfigState;
+  setConfig: SetterOrUpdater<ConfigState>;
   value?: string;
   required?: boolean;
   disabled?: boolean;
@@ -19,7 +24,9 @@ type Props = {
 
 const RadioButton: FC<Props> = ({
   options,
-  value = "",
+  config,
+  setConfig,
+  configKey,
   className = "",
   error = "",
   label = "",
@@ -29,6 +36,19 @@ const RadioButton: FC<Props> = ({
   onClick = undefined,
 }) => {
   const domId = makeRandomString();
+
+  const onClickRadio: MouseEventHandler<HTMLInputElement> = (event) => {
+    if (setConfig) {
+      const input = event.target as HTMLInputElement;
+      setConfig((prevConfig) => ({
+        ...prevConfig,
+        radio: input.value,
+      }));
+    }
+    if (onClick) {
+      onClick(event);
+    }
+  };
 
   return (
     <div id={domId} className={className}>
@@ -42,8 +62,8 @@ const RadioButton: FC<Props> = ({
               value={option.value}
               id={option.label}
               onChange={onChange}
-              checked={value === option.value}
-              onClick={onClick}
+              checked={config[configKey] === option.value}
+              onClick={onClickRadio}
             />
             <label htmlFor={option.label}>{option.label}</label>
           </span>
